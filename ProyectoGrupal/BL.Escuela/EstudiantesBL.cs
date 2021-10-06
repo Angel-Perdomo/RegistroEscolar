@@ -17,28 +17,37 @@ namespace BL.Escuela
 
             var estuden1 = new Estudiantes();
             estuden1.numeroCuenta = 2021001;
-            estuden1.primerNombre = "María";
-            estuden1.segundoNombre = "Josefa";
-            estuden1.primerApellido = "Montes";
-            estuden1.segundoApellido = "Reyes";
+            estuden1.Nombre = "María";
+            estuden1.Apellido = "Montes";
+            estuden1.Edad = 15;
+            estuden1.Telefono = 94024574;
+            estuden1.Correo = "maria21@gmail.com";
+            estuden1.Grado = "octavo";
+            estuden1.Clases = "Matemáticas";
             estuden1.estMatriculado = true;
             ListaEstudiantes.Add(estuden1);
 
             var estuden2 = new Estudiantes();
             estuden2.numeroCuenta = 2021002;
-            estuden2.primerNombre = "Carlos";
-            estuden2.segundoNombre = "Ernesto";
-            estuden2.primerApellido = "Martinez";
-            estuden2.segundoApellido = "Flores";
+            estuden2.Nombre = "Pedro";
+            estuden2.Apellido = "Reyes";
+            estuden2.Edad = 15;
+            estuden2.Telefono = 89143675;
+            estuden2.Correo = "pedro.n14@gmail.com";
+            estuden2.Grado = "Sexto";
+            estuden2.Clases = "Español";
             estuden2.estMatriculado = true;
             ListaEstudiantes.Add(estuden2);
 
             var estuden3 = new Estudiantes();
             estuden3.numeroCuenta = 2021003;
-            estuden3.primerNombre = "Kathia";
-            estuden3.segundoNombre = "Joselin";
-            estuden3.primerApellido = "Alcantara";
-            estuden3.segundoApellido = "Vasquez";
+            estuden3.Nombre = "Nahomy";
+            estuden3.Apellido = "Zelaya";
+            estuden3.Edad = 15;
+            estuden3.Telefono = 998884236;
+            estuden3.Correo = "pelo.negro12@gmail.com";
+            estuden3.Grado = "octavo";
+            estuden3.Clases = "Inglés";
             estuden3.estMatriculado = true;
             ListaEstudiantes.Add(estuden3);
 
@@ -54,10 +63,13 @@ namespace BL.Escuela
     public class Estudiantes //CLASE
     {
         public int numeroCuenta { get; set; } //Propiedad
-        public string primerNombre { get; set; }
-        public string segundoNombre { get; set; }
-        public string primerApellido { get; set; }
-        public string segundoApellido { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public int Edad { get; set; }
+        public int Telefono { get; set; }
+        public string Correo { get; set; }
+        public string Grado { get; set; }
+        public string Clases { get; set; }
         public bool estMatriculado { get; set; }
     }
 }

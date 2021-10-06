@@ -24,5 +24,10 @@ namespace Win.Escuela
 
 
         }
+
+        private void comboBoxListClass_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+        }
     }
 }
