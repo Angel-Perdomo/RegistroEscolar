@@ -1,7 +1,24 @@
-﻿namespace BL.Escuela
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BL.Escuela
 {
-    internal class Contexto
+    public class Contexto: DbContext //Herencia para utilizar bd
     {
-        public object Estudiantes { get; internal set; }
+        public Contexto(): base("RegistroEscolar")
+        {
+
+        }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        }
+
+        public DbSet<Estudiante> Estudiantes { get; set; } // Lista
     }
 }

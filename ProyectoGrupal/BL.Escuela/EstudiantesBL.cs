@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,67 +10,127 @@ namespace BL.Escuela
 {
     public class EstudiantesBL
     {
-        public BindingList<Estudiantes> ListaEstudiantes { get; set; } //**
+        Contexto _contexto;
+        public BindingList<Estudiante> ListaEstudiantes { get; set; }
 
         public EstudiantesBL()
         {
-            ListaEstudiantes = new BindingList<Estudiantes>();
-
-            var estuden1 = new Estudiantes();
-            estuden1.numeroCuenta = 2021001;
-            estuden1.Nombre = "María";
-            estuden1.Apellido = "Montes";
-            estuden1.Edad = 15;
-            estuden1.Telefono = 94024574;
-            estuden1.Correo = "maria21@gmail.com";
-            estuden1.Grado = "octavo";
-            estuden1.Clases = "Matemáticas";
-            estuden1.estMatriculado = true;
-            ListaEstudiantes.Add(estuden1);
-
-            var estuden2 = new Estudiantes();
-            estuden2.numeroCuenta = 2021002;
-            estuden2.Nombre = "Pedro";
-            estuden2.Apellido = "Reyes";
-            estuden2.Edad = 15;
-            estuden2.Telefono = 89143675;
-            estuden2.Correo = "pedro.n14@gmail.com";
-            estuden2.Grado = "Sexto";
-            estuden2.Clases = "Español";
-            estuden2.estMatriculado = true;
-            ListaEstudiantes.Add(estuden2);
-
-            var estuden3 = new Estudiantes();
-            estuden3.numeroCuenta = 2021003;
-            estuden3.Nombre = "Nahomy";
-            estuden3.Apellido = "Zelaya";
-            estuden3.Edad = 15;
-            estuden3.Telefono = 998884236;
-            estuden3.Correo = "pelo.negro12@gmail.com";
-            estuden3.Grado = "octavo";
-            estuden3.Clases = "Inglés";
-            estuden3.estMatriculado = true;
-            ListaEstudiantes.Add(estuden3);
-
+            _contexto = new Contexto();
+            ListaEstudiantes = new BindingList<Estudiante>();
         }
 
-        public BindingList<Estudiantes> ObtenerEstudiantes()
+        public BindingList<Estudiante> ObtenerEstudiantes()
         {
+            _contexto.Estudiantes.Load();
+            ListaEstudiantes = _contexto.Estudiantes.Local.ToBindingList();
+
             return ListaEstudiantes;
         }
 
-    } // Fin class EstudiantesBL.
+        public Resultado GuardarEstudiante(Estudiante estudiante)
+        {
+            var resultado = Validar(estudiante);
+            if (resultado.Exitoso == false)
+            {
+                return resultado;
+            }
 
-    public class Estudiantes //CLASE
+            _contexto.SaveChanges(); // el contexto representa nuestra bd
+
+            resultado.Exitoso = true;
+            return resultado;
+        } //  GuardarEstudiante
+
+        public void AgregarEstudiante()
+        {
+            var nuevoEstudiante = new Estudiante();
+            ListaEstudiantes.Add(nuevoEstudiante);
+        }
+
+        public bool EliminarEstudiante(int id)
+        {
+            foreach (var estudiante in ListaEstudiantes)
+            {
+                if (estudiante.Id == id)
+                {
+                    ListaEstudiantes.Remove(estudiante);
+                    _contexto.SaveChanges();
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private Resultado Validar(Estudiante estudiante)
+        {
+            var resultado = new Resultado();
+            resultado.Exitoso = true;
+
+            if (string.IsNullOrEmpty(estudiante.Cedula) == true)
+            {
+                resultado.Mensaje = "Ingrese un numero de cedula";
+                resultado.Exitoso = false;
+            }
+            if (string.IsNullOrEmpty(estudiante.Nombre) == true)
+            {
+                resultado.Mensaje = "Ingrese un Nombre";
+                resultado.Exitoso = false;
+            }
+            if (string.IsNullOrEmpty(estudiante.Apellido) == true)
+            {
+                resultado.Mensaje = "Ingrese un Apellido";
+                resultado.Exitoso = false;
+            }
+            if (string.IsNullOrEmpty(estudiante.Celular) == true)
+            {
+                resultado.Mensaje = "Ingrese un numero celular";
+                resultado.Exitoso = false;
+            }
+
+            if (string.IsNullOrEmpty(estudiante.Correo) == true)
+            {
+                resultado.Mensaje = "Ingrese un correo electrónico";
+                resultado.Exitoso = false;
+            }
+            if (string.IsNullOrEmpty(estudiante.Grado) == true || estudiante.Grado != "Primero" && estudiante.Grado != "Segundo"
+                && estudiante.Grado != "Tercero" && estudiante.Grado != "Cuarto" && estudiante.Grado != "Quinto" && estudiante.Grado != "Sexto")
+            { 
+                resultado.Mensaje = "El campo está vacío o ingresó un grado incorrecto";
+                resultado.Exitoso = false;
+            }
+            
+            if (estudiante.Edad <6 || estudiante.Edad > 13)
+            {
+                resultado.Mensaje = "La edad no debe ser menor que 6 ni mayor que 13";
+                resultado.Exitoso = false;
+            }
+            if (estudiante.Clases < 1 || estudiante.Clases > 12)
+            {
+                resultado.Mensaje = "Las clases deben ser mayor a 1 y menor que 12";
+                resultado.Exitoso = false;
+            }
+
+            return resultado;
+        }
+    }
+
+    public class Estudiante
     {
-        public int numeroCuenta { get; set; } //Propiedad
+        public int Id { get; set; }
+        public string Cedula { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public int Edad { get; set; }
-        public int Telefono { get; set; }
+        public string Celular { get; set; }
         public string Correo { get; set; }
         public string Grado { get; set; }
-        public string Clases { get; set; }
-        public bool estMatriculado { get; set; }
+        public int Clases { get; set; }
+        public bool Activo { get; set; }
+
+    }
+    public class Resultado
+    {
+        public bool Exitoso { get; set; }
+        public string Mensaje { get; set; }
     }
 }
