@@ -72,6 +72,8 @@
             this.listaGradosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gradosBLBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.direccionTextBox = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             activoLabel = new System.Windows.Forms.Label();
             cedulaLabel = new System.Windows.Forms.Label();
             celularLabel = new System.Windows.Forms.Label();
@@ -385,16 +387,16 @@
             // 
             this.fotoPictureBox.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.fotoPictureBox.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.listaMaestrosBindingSource, "Foto", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.fotoPictureBox.Location = new System.Drawing.Point(508, 66);
+            this.fotoPictureBox.Location = new System.Drawing.Point(467, 106);
             this.fotoPictureBox.Name = "fotoPictureBox";
-            this.fotoPictureBox.Size = new System.Drawing.Size(178, 191);
+            this.fotoPictureBox.Size = new System.Drawing.Size(223, 191);
             this.fotoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.fotoPictureBox.TabIndex = 18;
             this.fotoPictureBox.TabStop = false;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(485, 263);
+            this.button1.Location = new System.Drawing.Point(467, 314);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(84, 23);
             this.button1.TabIndex = 19;
@@ -404,7 +406,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(624, 263);
+            this.button2.Location = new System.Drawing.Point(606, 314);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(84, 23);
             this.button2.TabIndex = 20;
@@ -463,11 +465,30 @@
             this.direccionTextBox.Size = new System.Drawing.Size(317, 20);
             this.direccionTextBox.TabIndex = 24;
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(615, 67);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 32;
+            this.button3.Text = "Buscar";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(467, 70);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(142, 20);
+            this.textBox1.TabIndex = 31;
+            // 
             // FormMaestro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(735, 423);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(direccionLabel);
             this.Controls.Add(this.direccionTextBox);
             this.Controls.Add(gradoIdLabel);
@@ -541,5 +562,7 @@
         private System.Windows.Forms.BindingSource listaGradosBindingSource;
         private System.Windows.Forms.BindingSource gradosBLBindingSource;
         private System.Windows.Forms.TextBox direccionTextBox;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

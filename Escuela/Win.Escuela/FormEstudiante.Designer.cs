@@ -72,6 +72,8 @@ namespace Win.Escuela
             this.gradoIdComboBox = new System.Windows.Forms.ComboBox();
             this.direccionTextBox = new System.Windows.Forms.TextBox();
             this.gradoIdTextBox = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
             activoLabel = new System.Windows.Forms.Label();
             celularLabel = new System.Windows.Forms.Label();
             correoLabel = new System.Windows.Forms.Label();
@@ -384,9 +386,9 @@ namespace Win.Escuela
             // 
             this.fotoPictureBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.fotoPictureBox.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.listaEstudiantesBindingSource, "Foto", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.fotoPictureBox.Location = new System.Drawing.Point(516, 54);
+            this.fotoPictureBox.Location = new System.Drawing.Point(487, 105);
             this.fotoPictureBox.Name = "fotoPictureBox";
-            this.fotoPictureBox.Size = new System.Drawing.Size(155, 179);
+            this.fotoPictureBox.Size = new System.Drawing.Size(192, 179);
             this.fotoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.fotoPictureBox.TabIndex = 22;
             this.fotoPictureBox.TabStop = false;
@@ -394,7 +396,7 @@ namespace Win.Escuela
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(504, 261);
+            this.button1.Location = new System.Drawing.Point(487, 298);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(93, 23);
             this.button1.TabIndex = 23;
@@ -404,7 +406,7 @@ namespace Win.Escuela
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(603, 261);
+            this.button2.Location = new System.Drawing.Point(586, 298);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(93, 23);
             this.button2.TabIndex = 24;
@@ -450,12 +452,31 @@ namespace Win.Escuela
             this.gradoIdTextBox.Size = new System.Drawing.Size(100, 20);
             this.gradoIdTextBox.TabIndex = 28;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(487, 54);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(115, 20);
+            this.textBox1.TabIndex = 29;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(608, 51);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 30;
+            this.button3.Text = "Buscar";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // FormEstudiante
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(725, 404);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(gradoIdLabel2);
             this.Controls.Add(this.gradoIdTextBox);
             this.Controls.Add(direccionLabel1);
@@ -527,5 +548,7 @@ namespace Win.Escuela
         private System.Windows.Forms.ComboBox gradoIdComboBox;
         private System.Windows.Forms.TextBox direccionTextBox;
         private System.Windows.Forms.TextBox gradoIdTextBox;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button3;
     }
 }
